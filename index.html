@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Охотминимум: закономерности и даты — подготовка к экзамену</title>
+<meta name="description" content="Шпаргалка по 257 вопросам охотминимума: закономерности по темам, таблицы сроков охоты, вопросы-ловушки и алгоритм угадывания.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#26382b;
+  --pine-2:#31452f;
+  --olive:#55613f;
+  --paper:#f4f3ec;
+  --card:#ffffff;
+  --ink:#23241f;
+  --muted:#6d6f60;
+  --blaze:#d95a08;
+  --blaze-bg:#fdeee1;
+  --line:#d8d6c8;
+  --ok:#1b6e2e;
+  --no:#a02020;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "PT Sans",sans-serif}
+h1,h2,h3{font-family:"Oswald",sans-serif;font-weight:600;letter-spacing:.4px;line-height:1.15;margin:0}
+a{color:var(--pine)}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:var(--pine);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+nav a{flex:none;color:#cfe0d0;text-decoration:none;font-family:"Oswald",sans-serif;font-weight:500;font-size:14px;letter-spacing:.6px;text-transform:uppercase;padding:13px 13px 10px;border-bottom:3px solid transparent}
+nav a:hover{color:#fff}
+nav a.active{color:#fff;border-bottom-color:var(--blaze)}
+nav a:focus-visible{outline:2px solid var(--blaze);outline-offset:-2px}
+
+/* ---------- hero ---------- */
+header{background:linear-gradient(160deg,var(--pine) 0%,var(--pine-2) 70%);color:#fff;padding:52px 0 44px}
+header .eyebrow{font-family:"PT Mono",monospace;font-size:13px;color:var(--blaze);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+header h1{font-size:clamp(30px,5vw,50px);text-transform:uppercase}
+header p.lead{max-width:640px;color:#cfe0d0;font-size:17px;margin:14px 0 34px}
+.timeline{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:18px 18px 12px}
+.timeline .months{display:grid;grid-template-columns:repeat(12,1fr);font-family:"PT Mono",monospace;font-size:11px;color:#9db6a0;margin-bottom:8px}
+.timeline .months span{border-left:1px solid rgba(255,255,255,.12);padding-left:4px}
+.trow{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:10px;margin-bottom:7px}
+.trow .lbl{font-size:13px;color:#e7efe7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trow .track{position:relative;height:14px;background:rgba(255,255,255,.07);border-radius:3px}
+.trow .seg{position:absolute;top:0;height:100%;border-radius:3px;background:var(--blaze)}
+.trow.alt .seg{background:#7ea36b}
+.timeline .cap{font-size:12px;color:#9db6a0;margin-top:10px}
+@media(max-width:560px){.trow{grid-template-columns:104px 1fr}.trow .lbl{font-size:11px}}
+
+/* ---------- sections ---------- */
+section{padding:44px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--pine);padding-bottom:8px;margin-bottom:22px}
+.sec-head .tag{font-family:"PT Mono",monospace;background:var(--pine);color:#fff;font-size:13px;padding:3px 9px;border-radius:4px;white-space:nowrap}
+.sec-head h2{font-size:clamp(22px,3vw,30px);text-transform:uppercase;color:var(--pine)}
+.sec-head .q{margin-left:auto;font-family:"PT Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+h3{font-size:19px;color:var(--olive);margin:26px 0 10px;text-transform:uppercase;letter-spacing:.5px}
+
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:10px 0 20px;font-size:15px}
+th{background:var(--pine);color:#fff;text-align:left;padding:9px 12px;font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.5px;font-size:14px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#f7f6f0}
+.date{font-family:"PT Mono",monospace;font-weight:700;color:var(--blaze);white-space:nowrap}
+.qn{font-family:"PT Mono",monospace;font-size:12px;color:var(--muted)}
+.ok{color:var(--ok);font-weight:700}
+.no{color:var(--no);font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.tbl-scroll table{min-width:560px}
+
+.trap{background:var(--blaze-bg);border-left:5px solid var(--blaze);border-radius:0 8px 8px 0;padding:13px 17px;margin:14px 0 20px}
+.trap b.t{display:block;font-family:"Oswald",sans-serif;color:var(--blaze);text-transform:uppercase;letter-spacing:.6px;font-size:14px;margin-bottom:5px}
+.hint{background:#e9efe6;border-left:5px solid var(--olive);border-radius:0 8px 8px 0;padding:13px 17px;margin:14px 0 20px}
+.hint b.t{display:block;font-family:"Oswald",sans-serif;color:var(--olive);text-transform:uppercase;letter-spacing:.6px;font-size:14px;margin-bottom:5px}
+ul{margin:6px 0 18px;padding-left:20px}
+li{margin-bottom:5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:10px 0 22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card b.t{display:block;font-family:"Oswald",sans-serif;color:var(--pine);text-transform:uppercase;font-size:14px;letter-spacing:.5px;margin-bottom:6px}
+.card ul{margin-bottom:2px}
+.big-num{font-family:"PT Mono",monospace;font-weight:700;color:var(--blaze)}
+
+footer{margin-top:56px;background:var(--pine);color:#9db6a0;padding:26px 0;font-size:14px}
+footer a{color:#cfe0d0}
+</style>
+</head>
+<body>
+
+<nav id="topnav"><div class="wrap">
+  <a href="#t1">1 · Общие</a>
+  <a href="#t2">2 · Правила</a>
+  <a href="#t3">3 · Копытные</a>
+  <a href="#t4">4 · Медведи</a>
+  <a href="#t5">5 · Пушные</a>
+  <a href="#t6">6 · Птица</a>
+  <a href="#svod">Все даты</a>
+  <a href="#sovety">Советы</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">Охотминимум · 257 вопросов · Минприроды России</div>
+  <h1>Закономерности вместо зубрёжки</h1>
+  <p class="lead">Разбор всех билетов охотминимума по шести темам: датовые блоки, повторяющиеся паттерны, вопросы-ловушки и алгоритм угадывания, когда ответ вылетел из головы.</p>
+  <div class="timeline" aria-label="Сезоны охоты по месяцам">
+    <div class="months"><span>Янв</span><span>Фев</span><span>Мар</span><span>Апр</span><span>Май</span><span>Июн</span><span>Июл</span><span>Авг</span><span>Сен</span><span>Окт</span><span>Ноя</span><span>Дек</span></div>
+    <div class="trow"><span class="lbl">Кабан</span><div class="track"><i class="seg" style="left:41.7%;width:58.3%"></i><i class="seg" style="left:0;width:16.7%"></i></div></div>
+    <div class="trow alt"><span class="lbl">Лось</span><div class="track"><i class="seg" style="left:70.8%;width:29.2%"></i><i class="seg" style="left:0;width:2.7%"></i></div></div>
+    <div class="trow"><span class="lbl">Косули, олени, лань</span><div class="track"><i class="seg" style="left:75%;width:25%"></i><i class="seg" style="left:0;width:2.7%"></i></div></div>
+    <div class="trow alt"><span class="lbl">Медведь бурый</span><div class="track"><i class="seg" style="left:22.1%;width:22.1%"></i><i class="seg" style="left:58.3%;width:41.7%"></i></div></div>
+    <div class="trow"><span class="lbl">Волк, шакал</span><div class="track"><i class="seg" style="left:58.3%;width:41.7%"></i><i class="seg" style="left:0;width:25%"></i></div></div>
+    <div class="trow alt"><span class="lbl">Пушная «классика»</span><div class="track"><i class="seg" style="left:70.8%;width:29.2%"></i><i class="seg" style="left:0;width:16.7%"></i></div></div>
+    <div class="trow"><span class="lbl">Пернатая дичь</span><div class="track"><i class="seg" style="left:60.4%;width:39.6%"></i></div></div>
+    <div class="cap">Оранжевые и зелёные полосы — открытые сезоны. Разрыв у бурого медведя (11.06–31.07) — «окно тишины», охота запрещена.</div>
+  </div>
+</div></header>
+
+<!-- ================= ТЕМА 1 ================= -->
+<section id="t1"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 1</span><h2>Общие темы</h2><span class="q">в. 1–2, 216–223</span></div>
+  <p>Десять вопросов без единой даты — определения, биология и главный перевёртыш всего теста.</p>
+
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:44%">Вопрос</th><th style="width:30%">Ответ</th><th>Ключ</th></tr>
+    <tr><td>Что приравнивается к охоте <span class="qn">в. 1</span></td><td>нахождение в угодьях с <b>орудиями охоты и/или продукцией, собаками охотничьих пород, ловчими птицами</b></td><td>не «только с оружием»!</td></tr>
+    <tr><td>Кто исключение <span class="qn">в. 2</span></td><td><b>должностные лица охотнадзора + производственные инспектора</b></td><td>длинный вариант</td></tr>
+    <tr><td>Медведь: спячка? <span class="qn">в. 216</span></td><td class="no">НЕТ</td><td rowspan="2">пара-перевёртыш: сон ≠ спячка</td></tr>
+    <tr><td>Медведь: зимний сон? <span class="qn">в. 217</span></td><td class="ok">ДА</td></tr>
+    <tr><td>Не охотресурс <span class="qn">в. 218</span></td><td><b>водные биологические ресурсы</b></td><td>рыба — не дичь</td></tr>
+    <tr><td>Не охотресурс из видов <span class="qn">в. 219</span></td><td><b>рыжая полёвка</b></td><td>водяная — ресурс, крот — ресурс</td></tr>
+    <tr><td>Гон у лосей / пятнистых оленей <span class="qn">в. 220–221</span></td><td><b>осенний</b> (оба)</td><td>оба ответа — «в»</td></tr>
+    <tr><td>Территория действия Правил <span class="qn">в. 222</span></td><td><b>вся территория РФ</b></td><td>не только угодья</td></tr>
+    <tr><td>Для кого обязательны <span class="qn">в. 223</span></td><td>физлица + юрлица (с исключением про полувольные условия)</td><td>самый длинный вариант</td></tr>
+  </table></div>
+
+  <div class="trap"><b class="t">Ловушки</b>
+    <ul style="margin-bottom:2px">
+      <li><b>216 vs 217</b> — одинаковые с виду вопросы, противоположные ответы. Спячка (глубокое оцепенение — сурок, ёж) у медведя — нет; чуткий зимний сон — да. Только зубрить.</li>
+      <li><b>Полёвки:</b> рыжая — НЕ ресурс, водяная — ресурс. Стоят рядом в вариантах.</li>
+      <li>«Только с огнестрельным оружием» в в. 1 — приманка.</li>
+    </ul>
+  </div>
+  <div class="hint"><b class="t">Как угадывать</b>Правило «б» здесь слабое (~50%). Работает «длинный = правильный» (в. 1, 2, 223); оба «гона» — осенний, оба «в».</div>
+</div></section>
+
+<!-- ================= ТЕМА 2 ================= -->
+<section id="t2"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 2</span><h2>Правила охоты</h2><span class="q">~100 вопросов</span></div>
+  <p>Самая большая тема. Дат нет — шесть сквозных паттернов закрывают почти всё.</p>
+
+  <h3>Паттерн 1 · Лестница документов</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:42%">Ситуация</th><th>Что при себе</th><th style="width:16%">Вопросы</th></tr>
+    <tr><td>База (общедоступные угодья)</td><td>охотбилет + разрешение на добычу</td><td class="qn">3, 4, 82, 124</td></tr>
+    <tr><td>Закреплённые угодья</td><td>+ <b>путёвка</b></td><td class="qn">5, 83, 125, 234</td></tr>
+    <tr><td>С огнестрелом / пневматикой</td><td>+ <b>РОХа</b> (хранение и ношение)</td><td class="qn">224, 225</td></tr>
+    <tr><td>С ловчей птицей</td><td>+ разрешение на <b>содержание</b> птицы</td><td class="qn">140, 227</td></tr>
+    <tr><td>С подружейной собакой</td><td>+ справка о происхождении</td><td class="qn">227</td></tr>
+  </table></div>
+  <p>Инспектору для осмотра: <b>вещи, орудия охоты, продукция, транспорт</b> <span class="qn">в. 226</span>. Вариант со словом «только» — неверный.</p>
+
+  <h3>Паттерн 2 · Транспортировка vs реализация</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:42%">Действие</th><th>Документ</th><th style="width:16%">Вопросы</th></tr>
+    <tr><td><b>Везёшь</b> (норма &gt;1 в день или количество не указано)</td><td>разрешение <b>БЕЗ заполненных</b> сведений</td><td class="qn">6, 8, 173</td></tr>
+    <tr><td><b>Продаёшь</b></td><td>разрешение <b>С заполненными</b> сведениями или отрывной талон (вид, количество, дата)</td><td class="qn">7, 172, 174</td></tr>
+    <tr><td>Везёшь добытое копытное</td><td><b>отрывной талон</b></td><td class="qn">9, 175</td></tr>
+    <tr><td>Без документов</td><td class="no">нельзя</td><td class="qn">176</td></tr>
+  </table></div>
+  <div class="hint"><b class="t">Мнемоника</b>«Везёшь — пустое, продаёшь — заполненное».</div>
+
+  <h3>Паттерн 3 · Пара «закреплённые / общедоступные»</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:30%">Угодья</th><th>Кого уведомить</th><th style="width:30%">Сюжеты</th></tr>
+    <tr><td>Закреплённые</td><td><b>охотпользователя</b></td><td class="qn">раненый медведь (103), петли (121)</td></tr>
+    <tr><td>Общедоступные</td><td><b>орган гос. власти субъекта</b></td><td class="qn">104, 122</td></tr>
+  </table></div>
+  <p>Один факт = четыре вопроса.</p>
+
+  <h3>Паттерн 4 · Коллективная охота</h3>
+  <ul>
+    <li>Список участников: <b>ФИО + серии и номера охотбилетов</b> — одинаково для копытных, медведя, шакала <span class="qn">(11, 13, 74, 75, 84 — пять вопросов, один ответ)</span></li>
+    <li>Путёвка — <b>одному</b>: получателю разрешения <span class="qn">(10, 12)</span></li>
+    <li>Ответственный <b>обязан присутствовать</b> <span class="qn">(76)</span></li>
+    <li>До окончания загона не сходить с позиции, не подходить к зверю <span class="qn">(170)</span></li>
+  </ul>
+
+  <h3>Паттерн 5 · Запреты и их исключения</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:36%">Запрет</th><th>Исключение</th><th style="width:14%">Вопросы</th></tr>
+    <tr><td>Свет, тепловизоры, ПНВ</td><td>тёмное время: копытные, медведи, <b>волк, шакал</b>, лисица, енотовидная, барсук, бобры</td><td class="qn">149 = 244</td></tr>
+    <tr><td>Электронные манки</td><td>вороны (серая, чёрная, большеклювая), если субъект отнёс к ресурсам</td><td class="qn">146 = 245</td></tr>
+    <tr><td>Добыча в бедственном положении</td><td><b>волк, шакал</b>, вороны</td><td class="qn">138, 238</td></tr>
+    <tr><td>Ногозахватывающие капканы на волка</td><td>регулирование численности</td><td class="qn">239</td></tr>
+    <tr><td>Разрушение нор и убежищ</td><td>логовища <b>волков и шакалов</b>; раскопка нор барсука/лисицы/енотовидной — для помощи собаке</td><td class="qn">118, 160, 246</td></tr>
+    <tr><td>Бобровые плотины, ондатровые хатки/норы</td><td>для установки самоловов — <span class="ok">разрешено</span></td><td class="qn">19–21, 117, 247</td></tr>
+    <tr><td>Сети</td><td>верши с ячеёй ≥50 мм на норку/ондатру; на копытных — никогда</td><td class="qn">22–23, 116, 156</td></tr>
+    <tr><td>Самоловы</td><td>пушные — да; копытные и медведи — нет (кроме спецохоты и живоловушек на кабана)</td><td class="qn">119, 157, 237</td></tr>
+    <tr><td>Настороженное оружие, самострелы, ямы</td><td class="no">без исключений</td><td class="qn">242</td></tr>
+    <tr><td>Мехтранспорт, летательные аппараты</td><td class="no">запрещено (любительская охота)</td><td class="qn">150</td></tr>
+  </table></div>
+  <div class="trap"><b class="t">Ключ темы</b><b>Волк и шакал — в каждом списке исключений.</b> Если вариант содержит «волк, шакал» — он почти наверняка правильный.</div>
+
+  <h3>Паттерн 6 · Числа безопасности</h3>
+  <div class="cards">
+    <div class="card"><b class="t">Дистанции</b><ul>
+      <li><span class="big-num">200 м</span> — добыча оружием не ближе к жилью <span class="qn">(164)</span></li>
+      <li><span class="big-num">15 м</span> — снаряд не ближе к соседнему стрелку <span class="qn">(167)</span></li>
+      <li><span class="big-num">2,5 м</span> — мин. высота выстрела по птице в зарослях <span class="qn">(169)</span></li>
+      <li><span class="big-num">3</span> — макс. охотников с одной собакой <span class="qn">(141, 255)</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Стрелковые запреты (всё «запрещено»)</b><ul>
+      <li>«на шум», «на шорох», по неясной цели <span class="qn">(165)</span></li>
+      <li>по птице на проводах и опорах ЛЭП <span class="qn">(166)</span></li>
+      <li>по знакам, конструкциям, строениям <span class="qn">(168)</span></li>
+      <li>пристрелка: стрельбища <b>или</b> угодья в сезон с документами <span class="qn">(171)</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Дубли-подарки</b><ul>
+      <li>149 = 244, 146 = 245, 74 = 75 = 84</li>
+      <li>6 = 173, 7 = 174, 19–21 = 117 = 247</li>
+      <li>11 = 13, 22 = 23 = 116</li>
+      <li>Реальный объём зубрёжки — вдвое меньше</li>
+    </ul></div>
+  </div>
+  <div class="hint"><b class="t">Как угадывать</b>Самый <b>длинный и полный</b> вариант → правильный (~85% в этой теме). «Запрещено, за исключением случаев, установленных Правилами охоты» → правильный. «Только», «без ограничений», «любых» → неверный.</div>
+</div></section>
+
+<!-- ================= ТЕМА 3 ================= -->
+<section id="t3"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 3</span><h2>Сроки охоты на копытных</h2><span class="q">в. 24–28, 49–73, 177–212, 228–232</span></div>
+
+  <h3>Датовые блоки</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:36%">Вид</th><th style="width:22%">Срок</th><th>Особые окна / примечания</th></tr>
+    <tr><td>Кабан <span class="qn">24, 49, 177–178</span></td><td class="date">1.06 – 28(29).02</td><td>минимум <b>210 дней</b> — самый длинный сезон</td></tr>
+    <tr><td>Лось <span class="qn">25–26, 187–189</span></td><td class="date">15.09 – 10.01</td><td>самцы: <b>1–30.09</b>; самки и молодняк — с 15.09</td></tr>
+    <tr><td>Косуля европейская <span class="qn">27–28, 182–184</span></td><td class="date">1.10 – 10.01</td><td>самцы: <b>20.05–20.06 и 15.07–15.08</b> — два окна!</td></tr>
+    <tr><td>Косуля сибирская <span class="qn">54–55, 186</span></td><td class="date">1.10 – 10.01</td><td>самцы: <b>20.08–20.09</b>; различие косуль — только самцы</td></tr>
+    <tr><td>Олень благородный <span class="qn">57–59, 190–193</span></td><td class="date">1.10 – 10.01</td><td>самцы: 1–30.09; панты: <b>1.06–15.07</b></td></tr>
+    <tr><td>Олень пятнистый <span class="qn">60, 194–196</span></td><td class="date">1.10 – 10.01</td><td>панты: <b>1.06–15.07</b> (как у благородного)</td></tr>
+    <tr><td>Лань <span class="qn">70–71, 197–198</span></td><td class="date">1.10 – 10.01</td><td>самцы: 1–30.09; сроки = олень благородный</td></tr>
+    <tr><td>Дикий северный олень <span class="qn">61–62, 179–181</span></td><td class="date">1.08 – 31.01</td><td>минимум <b>90 дней</b></td></tr>
+    <tr><td>Серна, сиб. горный козёл, туры, снежный баран, овцебык <span class="qn">64–69, 199–207</span></td><td class="date">1.08 – 30.11</td><td>«горная пятёрка» — один срок на всех</td></tr>
+    <tr><td>Муфлон, гибриды зубра <span class="qn">72–73, 201–202, 208–209</span></td><td class="date">1.10 – 15.01</td><td>единственные «до 15 января»</td></tr>
+    <tr><td>Кабарга <span class="qn">63</span></td><td class="date">3 месяца</td><td>без конкретных дат в билетах</td></tr>
+  </table></div>
+
+  <h3>Взрослые самцы — три схемы</h3>
+  <div class="cards">
+    <div class="card"><b class="t">«Весь сентябрь»</b>Лось, олень благородный, лань — <span class="date">1 – 30.09</span>, 30 дней.</div>
+    <div class="card"><b class="t">Два окна</b>Косуля европейская — <span class="date">20.05–20.06</span> и <span class="date">15.07–15.08</span>.</div>
+    <div class="card"><b class="t">Одно позднее окно</b>Косуля сибирская — <span class="date">20.08 – 20.09</span>. Панты обоих оленей — <span class="date">1.06–15.07</span>.</div>
+  </div>
+
+  <div class="trap"><b class="t">Ловушки</b>
+    <ul style="margin-bottom:2px">
+      <li>Лось в августе — <span class="no">запрещена полностью</span> <span class="qn">(52)</span>; кабан в августе — <span class="ok">разрешена</span> <span class="qn">(50)</span>. Любимая пара контрастов.</li>
+      <li>«Совпадают ли сроки X и Y» <span class="qn">(185, 197, 205, 207, 69)</span> → ответ всегда <b>ДА</b>.</li>
+      <li>Дробь/картечь <span class="qn">(241)</span>: запрещена, кроме <b>≥5 мм</b> — кабарга, косули, сев. олень; <b>≥7,5 мм</b> — кабан.</li>
+      <li>Кабан в янв–фев: загон, нагон, собаки — нельзя; только <b>лабазы, засидки, укрытия</b> <span class="qn">(155, 236)</span>.</li>
+      <li>Молодняк лося до 1 года: 15.09–10.01, приманка «не более 90 дней» — неверна <span class="qn">(232)</span>.</li>
+    </ul>
+  </div>
+  <div class="hint"><b class="t">Порядок при добыче</b>Добыл → отделяешь поле <b>«ДОБЫЧА»</b> + заполняешь сведения <span class="qn">(151)</span>. Ранил → дата + поле <b>«РАНЕНИЕ»</b> → добор <span class="qn">(152)</span>. В чужие угодья — можно, сделав отметку о ранении <span class="qn">(153)</span>.</div>
+</div></section>
+
+<!-- ================= ТЕМА 4 ================= -->
+<section id="t4"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 4</span><h2>Сроки охоты на медведей</h2><span class="q">в. 29–30, 85–104, 240</span></div>
+
+  <h3>Даты</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:36%">Вид</th><th>Срок</th></tr>
+    <tr><td>Бурый <span class="qn">29, 85–89</span></td><td><span class="date">21.03 – 10.06</span> и <span class="date">1.08 – 31.12</span> · между ними (11.06–31.07) — <span class="no">запрещено</span> · весной до <b>10 июня</b></td></tr>
+    <tr><td>Гималайский (белогрудый) <span class="qn">30, 90–91</span></td><td><span class="date">1.08 – 31.12</span> — только осеннее окно</td></tr>
+  </table></div>
+
+  <div class="cards">
+    <div class="card"><b class="t">Проверка по месяцам</b><ul>
+      <li>Июль (оба) — <span class="no">запрещена</span> <span class="qn">(87–88)</span></li>
+      <li>Гималайский в сентябре — <span class="ok">разрешена</span> <span class="qn">(91)</span></li>
+      <li>Октябрь — <span class="ok">оба вида</span> <span class="qn">(92)</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Квоты и отчёты</b><ul>
+      <li>Квота <b>общая</b>, самцы — не отдельно <span class="qn">(94)</span></li>
+      <li>Исчерпана в 1-м сезоне → 2-й закрыт <span class="qn">(93)</span></li>
+      <li>Отчёт — <span class="big-num">10 дней</span> <span class="qn">(96)</span>; просрочка → год без разрешений <span class="qn">(97)</span></li>
+      <li>Лимит ставит <b>глава субъекта РФ</b> <span class="qn">(99)</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Жёсткие правила</b><ul>
+      <li>Медвежата до <span class="big-num">1 года</span> — нельзя <span class="qn">(240)</span></li>
+      <li>Капканы, самоловы — <span class="no">запрещены</span> <span class="qn">(102, 157)</span></li>
+      <li>Добор — <span class="big-num">3 суток</span>, не считая дня ранения <span class="qn">(101)</span></li>
+      <li>Вне сезона → <b>уголовная</b> ответственность <span class="qn">(100)</span></li>
+    </ul></div>
+  </div>
+
+  <div class="trap"><b class="t">Ловушки</b>
+    <ul style="margin-bottom:2px">
+      <li>Весной — до <b>10 июня</b>, приманки «1 июня» и «20 июня» <span class="qn">(89)</span>.</li>
+      <li>После добычи в разрешении: <b>дата, место, вид, пол</b> <span class="qn">(95)</span>.</li>
+      <li>Сроки <b>могут отличаться по регионам</b> <span class="qn">(98)</span>.</li>
+      <li>Виды: бурый + гималайский. Ни белого, ни «чёрного» <span class="qn">(81)</span>.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ================= ТЕМА 5 ================= -->
+<section id="t5"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 5</span><h2>Сроки охоты на пушных</h2><span class="q">в. 31–48, 105–125, 213–215, 248</span></div>
+
+  <h3>Линия стартов — от весны к осени</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:13%">Старт</th><th style="width:47%">Вид</th><th style="width:15%">Конец</th><th>Минимум</th></tr>
+    <tr><td class="date">20.03</td><td>Суслик-песчаник — единственный весенний <span class="qn">41, 109</span></td><td class="date">20.05</td><td>—</td></tr>
+    <tr><td class="date">1.06</td><td>Крот <span class="qn">42</span></td><td class="date">25.10</td><td>—</td></tr>
+    <tr><td class="date">15.06</td><td>Сурки (в т.ч. тарбаган), суслики кроме песчаника <span class="qn">43, 110, 211</span></td><td class="date">30.09</td><td>—</td></tr>
+    <tr><td class="date">1.08</td><td>Волк, шакал <span class="qn">31–32, 214, 248</span></td><td class="date">31.03</td><td>—</td></tr>
+    <tr><td class="date">15.08</td><td>Барсук <span class="qn">39, 111</span></td><td class="date">31.10</td><td>—</td></tr>
+    <tr><td class="date">10.09</td><td>Ондатра <span class="qn">35, 115, 213</span></td><td class="date">28(29).02</td><td><b>120</b></td></tr>
+    <tr><td class="date">15.09</td><td>«Классика»: зайцы, дикий кролик, лисица, корсак, енотовидная <span class="qn">33–34, 46–48, 105, 212</span></td><td class="date">28(29).02</td><td>—</td></tr>
+    <tr><td class="date">15.09</td><td>Бурундук <span class="qn">40, 108</span></td><td class="date">31.10</td><td>—</td></tr>
+    <tr><td class="date">1.10</td><td>Бобр, выдра <span class="qn">36–37</span></td><td class="date">28(29).02</td><td>—</td></tr>
+    <tr><td class="date">1.10</td><td>Песец, водяная полёвка <span class="qn">44–45, 106, 113–114</span></td><td class="date">31.03</td><td>—</td></tr>
+    <tr><td class="date">15.10</td><td>«Ценная пушнина»: белка, горностай, рысь, соболь <span class="qn">38, 107</span></td><td class="date">28(29).02</td><td><b>120</b></td></tr>
+  </table></div>
+  <div class="hint"><b class="t">Мнемоника линии</b>Весна — один песчаник · лето — землерои · август — хищник (волк) и спящий (барсук) · сентябрь — массовка · октябрь — вода и ценный мех. <b>Чем дороже шкурка — тем позже старт.</b></div>
+
+  <div class="cards">
+    <div class="card"><b class="t">Пары-двойники</b><ul>
+      <li>бобр = выдра <span class="date">1.10–28.02</span></li>
+      <li>песец = водяная полёвка <span class="date">1.10–31.03</span></li>
+      <li>волк = шакал <span class="date">1.08–31.03</span>, всё общее</li>
+      <li>барсук ~ бурундук — оба до <span class="date">31.10</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Правила блока</b><ul>
+      <li>Кроты, хомяки, ласка, полёвка, суслики, бурундуки — <b>только самоловами</b> <span class="qn">(119)</span></li>
+      <li>Петли: волк, шакал, заяц-беляк <span class="qn">(120)</span></li>
+      <li>«Разрешена в месяце X» у пушных — всегда <span class="ok">да</span> <span class="qn">(108, 109, 112, 215)</span></li>
+    </ul></div>
+    <div class="card"><b class="t">Правило 120</b>Пушнина + «120 дней» в варианте = <span class="ok">правильный ответ</span> без исключений <span class="qn">(35, 38, 107, 115, 213)</span>. У птицы 120 — часто приманка!</div>
+  </div>
+
+  <div class="trap"><b class="t">Ловушки</b>
+    <ul style="margin-bottom:2px">
+      <li>Ондатра стартует <b>10.09</b> (не 15-го!) — её фирменная деталь <span class="qn">(35)</span>.</li>
+      <li>Белка — <b>15.10</b>, приманка «1.10» <span class="qn">(38)</span>.</li>
+      <li>Крот — до <b>25.10</b>: единственная нестандартная дата окончания в тесте <span class="qn">(42)</span>.</li>
+      <li>Волк — «весь сезон август–март», не «только зимой» <span class="qn">(215)</span>.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ================= ТЕМА 6 ================= -->
+<section id="t6"><div class="wrap">
+  <div class="sec-head"><span class="tag">Тема 6</span><h2>Сроки охоты на пернатую дичь</h2><span class="q">в. 126–144, 249–257</span></div>
+
+  <h3>Кто есть кто</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:24%">Группа</th><th>Кто входит</th></tr>
+    <tr><td><b>Боровая</b></td><td>глухарь, тетерев, рябчик, <b>вальдшнеп</b>, <b>белая и тундряная куропатки</b></td></tr>
+    <tr><td><b>Водоплавающая</b></td><td>гуси, казарки, утки, <b>лысуха, камышница</b></td></tr>
+    <tr><td><b>Болотно-луговая</b></td><td>дупеля, бекасы, гаршнеп, турухтан, травник, чибис, тулес, улиты, веретенники, кроншнепы, мородунка, камнешарка, коростель, пастушок, погоныш</td></tr>
+    <tr><td><b>Степная и полевая</b></td><td><b>серая и бородатая куропатки</b>, перепела, саджа, фазаны, голуби, горлицы</td></tr>
+    <tr><td><b>Горная</b></td><td>кеклик и улары — всего два</td></tr>
+  </table></div>
+
+  <h3>Даты</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:44%">Что</th><th style="width:32%">Срок</th><th>Минимум</th></tr>
+    <tr><td>Водоплавающая, болотно-луговая, степная, полевая <span class="qn">135</span></td><td>со <b>2-й субботы августа</b> – <span class="date">31.12</span></td><td><b>90</b></td></tr>
+    <tr><td>Рябчик <span class="qn">132</span></td><td>с <b>3-й субботы августа</b> – <span class="date">28(29).02</span></td><td><b>120</b></td></tr>
+    <tr><td>Белая и тундряная куропатки <span class="qn">134</span></td><td>с <b>3-й субботы августа</b> – <span class="date">20.04</span></td><td><b>150</b></td></tr>
+    <tr><td>Болотно-луговая с легавыми / ловчими птицами <span class="qn">142, 256–257</span></td><td><span class="date">25.07 – 31.12</span></td><td><b>120</b> (не менее!)</td></tr>
+    <tr><td>Боровая, степная, полевая, горная с легавыми <span class="qn">143</span></td><td><span class="date">5.08 – 28(29).02</span></td><td><b>150</b></td></tr>
+    <tr><td>Водоплавающая с легавыми <span class="qn">144</span></td><td>со 2-й субботы августа – <span class="date">31.12</span></td><td>—</td></tr>
+    <tr><td>Селезни с подсадными утками <span class="qn">129</span></td><td><span class="date">1.03 – 16.06</span> непрерывно</td><td><b>≥30 дней</b></td></tr>
+    <tr><td>Турпаны — только Якутия <span class="qn">131</span></td><td><span class="date">29.05 – 4.06</span></td><td><b>≤4 дня</b></td></tr>
+    <tr><td>Весенняя охота (общая) <span class="qn">249</span></td><td>—</td><td><b>≤10 календ. дней</b></td></tr>
+  </table></div>
+  <div class="hint"><b class="t">Правило суббот</b>Без собак — 2-я суббота августа (обычная дичь) и 3-я (рябчик, куропатки). С легавыми — фиксированные даты: 25.07 и 5.08.</div>
+
+  <div class="trap"><b class="t">Ловушки</b>
+    <ul style="margin-bottom:2px">
+      <li><b>Вальдшнеп</b> — боровая (не болотная!) <span class="qn">(250)</span>; весной — только <b>вечерняя тяга</b> <span class="qn">(130, 253)</span>; нарезное по нему запрещено <span class="qn">(254)</span>.</li>
+      <li>Куропатки: белая/тундряная → боровая; серая/бородатая → степная и полевая <span class="qn">(250–251)</span>.</li>
+      <li>Лысуха и камышница — водоплавающая, не болотная <span class="qn">(127)</span>.</li>
+      <li>Птица + «120 дней» — часто приманка: у куропаток верно 150 <span class="qn">(134)</span>, у обычной дичи 90 <span class="qn">(135)</span>, «не менее 120» vs «не более 120» <span class="qn">(256)</span>.</li>
+      <li>Весной запрещены: рябчики, лысуха, камышница, серый гусь, белая/тундряная куропатки, вальдшнеп утром <span class="qn">(136, 159)</span>. С подхода — нельзя, кроме глухаря на току и медведя <span class="qn">(158)</span>.</li>
+      <li>Перепела: нельзя сети <span class="qn">(133)</span>. С одной собакой — не более 3 охотников <span class="qn">(141, 255)</span>. Манки — только на ворон <span class="qn">(146)</span>.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ================= СВОДНАЯ ================= -->
+<section id="svod"><div class="wrap">
+  <div class="sec-head"><span class="tag">Сводная</span><h2>Все даты одним взглядом</h2></div>
+
+  <div class="cards">
+    <div class="card"><b class="t">8 дат окончаний сезонов</b><ul>
+      <li><span class="date">10.01</span> — «осенняя четвёрка» копытных + лось</li>
+      <li><span class="date">15.01</span> — муфлон, гибриды зубра</li>
+      <li><span class="date">31.01</span> — северный олень</li>
+      <li><span class="date">28(29).02</span> — кабан, почти вся пушнина, рябчик</li>
+      <li><span class="date">31.03</span> — волк, шакал, песец, водяная полёвка</li>
+      <li><span class="date">31.10</span> — барсук, бурундук</li>
+      <li><span class="date">30.11</span> — «горная пятёрка»</li>
+      <li><span class="date">31.12</span> — оба медведя, птица без собак</li>
+    </ul></div>
+    <div class="card"><b class="t">5 минимумов сезона</b><ul>
+      <li><span class="big-num">210</span> — кабан</li>
+      <li><span class="big-num">150</span> — куропатки; легавые по боровой/степной/полевой/горной</li>
+      <li><span class="big-num">120</span> — ондатра, белка, ценная пушнина; рябчик; легавые по болотно-луговой</li>
+      <li><span class="big-num">90</span> — сев. олень; обычная птица</li>
+      <li><span class="big-num">30</span> — селезни с подсадными; сентябрь самцов</li>
+    </ul></div>
+    <div class="card"><b class="t">Ключевые старты</b><ul>
+      <li><span class="date">1.06</span> — кабан, крот, панты</li>
+      <li><span class="date">1.08</span> — волк/шакал, сев. олень, «горная пятёрка», медведи (осень)</li>
+      <li><span class="date">15.09</span> — лось, пушная «классика», бурундук</li>
+      <li><span class="date">1.10</span> — «осенняя четвёрка», муфлон/зубры, бобр/выдра, песец/полёвка</li>
+      <li><span class="date">15.10</span> — ценная пушнина</li>
+    </ul></div>
+  </div>
+
+  <h3>Полная таблица</h3>
+  <div class="tbl-scroll"><table>
+    <tr><th style="width:34%">Кто</th><th style="width:24%">Срок</th><th>Заметка</th></tr>
+    <tr><td>Кабан</td><td class="date">1.06 – 28(29).02</td><td>≥210 · в августе разрешён · янв–фев только с засидок</td></tr>
+    <tr><td>Лось</td><td class="date">15.09 – 10.01</td><td>самцы 1–30.09 · в августе запрещён полностью</td></tr>
+    <tr><td>Косули, олени (благородный, пятнистый), лань</td><td class="date">1.10 – 10.01</td><td>самцы лося/благородного/лани — сентябрь · панты 1.06–15.07</td></tr>
+    <tr><td>Косуля европейская — самцы</td><td class="date">20.05–20.06, 15.07–15.08</td><td>два окна · сибирская — 20.08–20.09</td></tr>
+    <tr><td>Северный олень</td><td class="date">1.08 – 31.01</td><td>≥90</td></tr>
+    <tr><td>Серна, козёл, туры, баран, овцебык</td><td class="date">1.08 – 30.11</td><td>«горная пятёрка», один срок</td></tr>
+    <tr><td>Муфлон, гибриды зубра</td><td class="date">1.10 – 15.01</td><td>—</td></tr>
+    <tr><td>Медведь бурый</td><td class="date">21.03–10.06, 1.08–31.12</td><td>июль — запрещено · весной до 10.06</td></tr>
+    <tr><td>Медведь гималайский</td><td class="date">1.08 – 31.12</td><td>только осень</td></tr>
+    <tr><td>Волк, шакал</td><td class="date">1.08 – 31.03</td><td>самый длинный у хищников</td></tr>
+    <tr><td>Зайцы, кролик, лисица, корсак, енотовидная</td><td class="date">15.09 – 28(29).02</td><td>«классика»</td></tr>
+    <tr><td>Бобр, выдра</td><td class="date">1.10 – 28(29).02</td><td>пара</td></tr>
+    <tr><td>Песец, водяная полёвка</td><td class="date">1.10 – 31.03</td><td>пара</td></tr>
+    <tr><td>Ондатра</td><td class="date">10.09 – 28(29).02</td><td>≥120 · старт 10-го!</td></tr>
+    <tr><td>Белка, горностай, рысь, соболь</td><td class="date">15.10 – 28(29).02</td><td>≥120 · «ценная пушнина»</td></tr>
+    <tr><td>Барсук / бурундук</td><td class="date">15.08 / 15.09 – 31.10</td><td>оба до 31.10</td></tr>
+    <tr><td>Суслик-песчаник</td><td class="date">20.03 – 20.05</td><td>единственный весенний</td></tr>
+    <tr><td>Сурки, суслики / крот</td><td class="date">15.06–30.09 / 1.06–25.10</td><td>летние землерои</td></tr>
+    <tr><td>Обычная пернатая дичь</td><td class="date">2-я сб августа – 31.12</td><td>≥90</td></tr>
+    <tr><td>Рябчик / куропатки бел., тундр.</td><td class="date">3-я сб августа – 28.02 / 20.04</td><td>≥120 / ≥150</td></tr>
+    <tr><td>С легавыми: болотно-луговая / остальная</td><td class="date">25.07–31.12 / 5.08–28.02</td><td>≥120 / ≥150</td></tr>
+    <tr><td>Селезни с подсадными / турпаны</td><td class="date">1.03–16.06 / 29.05–4.06</td><td>≥30 дней / ≤4 дня, Якутия</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ================= СОВЕТЫ ================= -->
+<section id="sovety"><div class="wrap">
+  <div class="sec-head"><span class="tag">Финал</span><h2>Общие советы и алгоритм угадывания</h2></div>
+
+  <div class="cards">
+    <div class="card"><b class="t">Буквенная статистика</b><ul>
+      <li>«б» правильный в <b>~65–70%</b> всего теста</li>
+      <li>В датовых вопросах — <b>~75%</b></li>
+      <li>Слабее всего в теме 1 (~50%)</li>
+      <li>Самцы и особые окна чаще ломают правило — там «а»</li>
+    </ul></div>
+    <div class="card"><b class="t">Маркер-фразы правильного</b><ul>
+      <li>«…за исключением случаев, установленных Правилами охоты»</li>
+      <li>«…в течение года с соблюдением требований…» (все спецвиды охоты, в. 14–18, 77–80)</li>
+      <li>«…выданное в соответствии с установленным порядком»</li>
+      <li>Самый длинный и полный вариант</li>
+    </ul></div>
+    <div class="card"><b class="t">Маркеры неправильного</b><ul>
+      <li>«только», «без ограничений», «любых»</li>
+      <li>«круглогодично», «не регламентирован»</li>
+      <li>«не более» там, где ждёшь «не менее»</li>
+      <li>Исключения: лось в августе «запрещена полностью», медведь в июле «запрещена» — верные</li>
+    </ul></div>
+  </div>
+
+  <h3>Алгоритм на экзамене</h3>
+  <div class="hint" style="margin-top:6px"><b class="t">Шесть шагов</b>
+    <ol style="margin:4px 0 2px;padding-left:20px">
+      <li>Датовый вопрос «все половозрастные группы» → ставь <b>«б»</b>.</li>
+      <li>«Совпадают ли сроки» → всегда <b>«да»</b>.</li>
+      <li>«В месяце X» про пушных → <b>«разрешена»</b>.</li>
+      <li>Пушнина + 120 дней → правильный. Птица + 120 → осторожно (там 150 или 90).</li>
+      <li>Вариант с <b>волком и шакалом</b> в списке исключений → правильный.</li>
+      <li>Длинный канцелярский → да; короткий категоричный → нет.</li>
+    </ol>
+  </div>
+
+  <div class="trap"><b class="t">Топ-ловушки всего теста</b>
+    <ul style="margin-bottom:2px">
+      <li>Медведь: спячка — нет, зимний сон — да (216–217)</li>
+      <li>Рыжая полёвка — не охотресурс; водяная — ресурс (219)</li>
+      <li>Вальдшнеп — боровая дичь, вечерняя тяга (250, 253)</li>
+      <li>Кабан в августе — да; лось в августе — нет (50, 52)</li>
+      <li>Ондатра — с 10 сентября, не с 15-го (35)</li>
+      <li>Белая/тундряная куропатки — 150 дней, не 120 (134)</li>
+    </ul>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Материал основан на перечне вопросов охотминимума Минприроды России (№ 21/12 от 18.09.2025). Шпаргалка для подготовки — на экзамене сверяйтесь с актуальной редакцией Правил охоты.
+</div></footer>
+
+<script>
+const links=[...document.querySelectorAll('nav a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+  }});
+},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s=>s&&io.observe(s));
+</script>
+</body>
+</html>
